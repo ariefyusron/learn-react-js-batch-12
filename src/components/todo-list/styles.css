@@ -1,0 +1,30 @@
+.wrap-item {
+  border-bottom: 1px solid grey;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 50%;
+}
+
+.wrap-input {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.input-todo {
+  display: flex;
+  flex: 1;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  align-items: center;
+}
