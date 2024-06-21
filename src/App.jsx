@@ -8,6 +8,8 @@ const App = () => {
   const [number, setNumber] = useState(1)
   const [text, setText] = useState('halo')
 
+  const listData = ['ini nomer 1', 'ini nomer 2', 'halo', 'ini nomer 4']
+
   useEffect(() => {
     console.log('useEffect')
   },[])
@@ -20,13 +22,10 @@ const App = () => {
         desc="ini deskripsi 1"
       />
 
-      {console.log('render')}
-
       {/* Body */}
       <Body />
       <button
         onClick={() => {
-          console.log('onclick')
           setNumber(number + 1)
           setText('apa kabar')
         }}
@@ -34,7 +33,15 @@ const App = () => {
         change number
       </button>
       <div>{number}</div>
+      {number > 5 ? <div>stop</div> : <div>{number}</div>}
       <div>{text}</div>
+      <div>---------------</div>
+
+      {listData.map((item, index) => (
+        <div key={index}>
+          {item}
+        </div>
+      ))}
     </div>
   )
 }
