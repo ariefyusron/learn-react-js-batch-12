@@ -1,11 +1,16 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Header from './components/header'
 import Body from './components/body'
 
 const App = () => {
   const [number, setNumber] = useState(1)
+  const [text, setText] = useState('halo')
+
+  useEffect(() => {
+    console.log('useEffect')
+  },[])
 
   return (
     <div className='wrap'>
@@ -15,18 +20,21 @@ const App = () => {
         desc="ini deskripsi 1"
       />
 
+      {console.log('render')}
+
       {/* Body */}
       <Body />
       <button
         onClick={() => {
-          console.log('before', number)
-          setNumber(2)
-          console.log('after', number)
+          console.log('onclick')
+          setNumber(number + 1)
+          setText('apa kabar')
         }}
       >
         change number
       </button>
       <div>{number}</div>
+      <div>{text}</div>
     </div>
   )
 }
