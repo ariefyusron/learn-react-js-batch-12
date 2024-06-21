@@ -28,3 +28,9 @@
   height: 200px;
   align-items: center;
 }
+
+.wrap-button-delete {
+  display: flex;
+  justify-content: end;
+  margin-top: 16px;
+}

@@ -27,6 +27,18 @@ const Index = () => {
           </button>
         </div>
 
+        {list.length > 0 && (
+          <div className='wrap-button-delete'>
+            <button
+              onClick={() => {
+                setList([])
+              }}
+            >
+              Hapus Semua
+            </button>
+          </div>
+        )}
+
         {list.length === 0 ? (
           <div className='empty'>
             Kosong
