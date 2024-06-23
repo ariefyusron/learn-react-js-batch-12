@@ -1,10 +1,10 @@
 import './styles.css'
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
+import { useTodoList } from '../../hooks/useTodoList'
+
 const Index = () => {
-  const [text, setText] = useState('')
-  const [list, setList] = useState([])
+  const { text, setText, list, setList, resetList } = useTodoList()
 
   const navigate = useNavigate()
 
@@ -42,7 +42,7 @@ const Index = () => {
             <div className='wrap-button-delete'>
               <button
                 onClick={() => {
-                  setList([])
+                  resetList()
                 }}
               >
                 Hapus Semua
