@@ -1,5 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 
+import Profile from '../../components/profile'
+import Setting from '../../components/setting'
+
 const Index = () => {
   const navigate = useNavigate()
 
@@ -13,6 +16,9 @@ const Index = () => {
       >
         go home
       </button>
+
+      <Profile />
+      <Setting />
     </div>
   )
 };
