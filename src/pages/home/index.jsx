@@ -4,40 +4,21 @@ import { useNavigate } from 'react-router-dom'
 import { useTodoList } from '../../hooks/useTodoList'
 
 const Index = () => {
-  const { text, setText, list, setList, resetList } = useTodoList()
+  const { list, resetList } = useTodoList()
 
   const navigate = useNavigate()
 
   return (
     <div className='wrap'>
       <div className='container'>
+        <div>
+          <button
+            onClick={() => {
+              navigate('/create')
+            }}
+          >Tambah</button>
+        </div>
         <div className='content'>
-          <div className='wrap-input'>
-            <input
-              className='input-todo'
-              onChange={(res) => {
-                setText(res.target.value)
-              }}
-              value={text}
-            />
-            <button
-              onClick={() => {
-                setList([text, ...list])
-                setText('')
-              }}
-              disabled={text === ''}
-            >
-              Tambah
-            </button>
-            <button
-              onClick={() => {
-                navigate('detail')
-              }}
-            >
-              goto detail
-            </button>
-          </div>
-
           {list.length > 0 && (
             <div className='wrap-button-delete'>
               <button

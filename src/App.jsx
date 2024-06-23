@@ -6,11 +6,12 @@ import {
 import Home from './Home'
 import HomePage from './pages/home'
 import DetailPage from './pages/detail'
+import CreatePage from './pages/create'
 
 const App = () => {
   const router = createBrowserRouter([
     {
-      path: '/home',
+      path: '/',
       element: <Home />,
       children: [
         {
@@ -20,6 +21,10 @@ const App = () => {
         {
           path: 'detail',
           element: <DetailPage />
+        },
+        {
+          path: 'create',
+          element: <CreatePage />
         }
       ]
     },
