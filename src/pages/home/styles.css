@@ -1,3 +1,9 @@
+.wrap {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
 .wrap-item {
   border-bottom: 1px solid grey;
 }
