@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useTodoList } from '../../hooks/useTodoList'
 
 const Index = () => {
-  const { list, resetList } = useTodoList()
+  const { list, resetList, setList } = useTodoList()
 
   const navigate = useNavigate()
 
@@ -37,7 +37,23 @@ const Index = () => {
             </div>
           ) : list.map((item, index) => (
                 <div key={index} className='wrap-item'>
-                  <p>{item}</p>
+                  <div>
+                    <p>{item}</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigate(`/edit/${index}`)
+                    }}
+                  >
+                    edit
+                  </button>
+                  <button
+                    onClick={() => {
+                      setList(list.filter((res, idx) => idx !== index))
+                    }}
+                  >
+                    delete
+                  </button>
                 </div>
             ))
           }

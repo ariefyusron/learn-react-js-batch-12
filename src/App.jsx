@@ -7,6 +7,7 @@ import Home from './Home'
 import HomePage from './pages/home'
 import DetailPage from './pages/detail'
 import CreatePage from './pages/create'
+import EditPage from './pages/edit'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const App = () => {
         {
           path: 'create',
           element: <CreatePage />
+        },
+        {
+          path: 'edit/:id',
+          element: <EditPage />
         }
       ]
     },
