@@ -1,18 +1,15 @@
 import './styles.css'
 import { useState } from 'react';
-
-import Header from '../../components/header'
+import { useNavigate } from 'react-router-dom'
 
 const Index = () => {
   const [text, setText] = useState('')
   const [list, setList] = useState([])
 
+  const navigate = useNavigate()
+
   return (
     <div className='wrap'>
-      <Header
-        title='Todo App'
-      />
-
       <div className='container'>
         <div className='content'>
           <div className='wrap-input'>
@@ -31,6 +28,13 @@ const Index = () => {
               disabled={text === ''}
             >
               Tambah
+            </button>
+            <button
+              onClick={() => {
+                navigate('detail')
+              }}
+            >
+              goto detail
             </button>
           </div>
 
