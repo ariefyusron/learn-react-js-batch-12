@@ -8,6 +8,7 @@ import HomePage from './pages/home'
 import DetailPage from './pages/detail'
 import CreatePage from './pages/create'
 import EditPage from './pages/edit'
+import PostPage from './pages/post'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -33,6 +34,10 @@ const App = () => {
         }
       ]
     },
+    {
+      path: '/post',
+      element: <PostPage />
+    }
   ]);
 
   return <RouterProvider router={router} />

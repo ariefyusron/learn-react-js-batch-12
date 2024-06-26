@@ -17,6 +17,11 @@ const Index = () => {
               navigate('/create')
             }}
           >Tambah</button>
+          <button
+            onClick={() => {
+              navigate('/post')
+            }}
+          >go post</button>
         </div>
         <div className='content'>
           {list.length > 0 && (
