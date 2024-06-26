@@ -6,16 +6,20 @@ const Index = () => {
   const [isError, setIsError] = useState(false)
   const [data, setData] = useState([])
 
+  const getData = async () => {
+    try {
+      setIsLoading(true)
+      const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      setData(res.data)
+    } catch (err) {
+      setIsError(true)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   useEffect(() => {
-    setIsLoading(true)
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then((res) => {
-        setData(res.data)
-      }).catch(() => {
-        setIsError(true)
-      }).finally(() => {
-        setIsLoading(false)
-      })
+    getData()
   },[])
 
   return (
