@@ -7,8 +7,19 @@ import { useState } from 'react';
 const Index = () => {
   const { list, resetList, setList } = useTodoList()
   const [selectList, setSelectList] = useState([])
+  const [filter, setFilter] = useState('all')
+
+  const listFilter = list.filter(res => filter === 'all' ? true : res.status === filter)
 
   const navigate = useNavigate()
+
+  const renderOption = () => (
+    <>
+      <option value="todo">todo</option>
+      <option value="in_progress">in progess</option>
+      <option value="done">done</option>
+    </>
+  )
 
   return (
     <div className='wrap'>
@@ -32,6 +43,15 @@ const Index = () => {
               }}
             >delete</button>
           )}
+          <select
+            value={filter}
+            onChange={res => {
+              setFilter(res.target.value)
+            }}
+          >
+            <option value="all">All</option>
+            {renderOption()}
+          </select>
         </div>
         <div className='content'>
           {list.length > 0 && (
@@ -46,11 +66,11 @@ const Index = () => {
             </div>
           )}
 
-          {list.length === 0 ? (
+          {listFilter.length === 0 ? (
             <div className='empty'>
               Kosong
             </div>
-          ) : list.map((item, index) => (
+          ) : listFilter.map((item, index) => (
                 <div key={index} className='wrap-item'>
                   <input
                     type='checkbox'
@@ -65,8 +85,21 @@ const Index = () => {
                     }}
                   />
                   <div>
-                    <label htmlFor={index}>{item}</label>
+                    <label htmlFor={index}>{item.title}</label>
                   </div>
+                  <select
+                    value={item.status}
+                    onChange={(res) => {
+                      const result = [...list]
+                      result[index] = {
+                        ...result[index],
+                        status: res.target.value
+                      }
+                      setList(result)
+                    }}
+                  >
+                    {renderOption()}
+                  </select>
                   <button
                     onClick={() => {
                       navigate(`/edit/${index}`)

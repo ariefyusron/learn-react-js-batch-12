@@ -25,7 +25,7 @@ const Index = () => {
         </button>
         <button
           onClick={() => {
-            setList([text, ...list])
+            setList([{ title: text, status: 'todo' }, ...list])
             setText('')
             navigate(-1)
           }}

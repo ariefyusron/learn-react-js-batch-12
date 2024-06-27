@@ -33,7 +33,10 @@ const Index = () => {
         <button
           onClick={() => {
             const result = [...list]
-            result[id] = text
+            result[id] = {
+              ...result[id],
+              title: text
+            }
 
             setList(result)
             setText('')
