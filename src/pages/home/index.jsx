@@ -2,9 +2,11 @@ import './styles.css'
 import { useNavigate } from 'react-router-dom'
 
 import { useTodoList } from '../../hooks/useTodoList'
+import { useState } from 'react';
 
 const Index = () => {
   const { list, resetList, setList } = useTodoList()
+  const [selectList, setSelectList] = useState([])
 
   const navigate = useNavigate()
 
@@ -22,6 +24,14 @@ const Index = () => {
               navigate('/post')
             }}
           >go post</button>
+          {selectList.length > 0 && (
+            <button
+              onClick={() => {
+                setList(list.filter((item, index) => !selectList.includes(index)))
+                setSelectList([])
+              }}
+            >delete</button>
+          )}
         </div>
         <div className='content'>
           {list.length > 0 && (
@@ -42,8 +52,20 @@ const Index = () => {
             </div>
           ) : list.map((item, index) => (
                 <div key={index} className='wrap-item'>
+                  <input
+                    type='checkbox'
+                    id={index}
+                    checked={selectList.includes(index)}
+                    onChange={(res) => {
+                      if(res.target.checked) {
+                        setSelectList([...selectList, index])
+                      } else {
+                        setSelectList(selectList.filter(res => res !== index))
+                      }
+                    }}
+                  />
                   <div>
-                    <p>{item}</p>
+                    <label htmlFor={index}>{item}</label>
                   </div>
                   <button
                     onClick={() => {
@@ -55,6 +77,7 @@ const Index = () => {
                   <button
                     onClick={() => {
                       setList(list.filter((res, idx) => idx !== index))
+                      setSelectList([])
                     }}
                   >
                     delete

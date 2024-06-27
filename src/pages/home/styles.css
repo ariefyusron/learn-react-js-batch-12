@@ -15,6 +15,12 @@
   flex: 1;
 }
 
+.wrap-item > div > label {
+  display: block;
+  padding: 16px 0;
+  cursor: pointer;
+}
+
 .container {
   display: flex;
   justify-content: center;
