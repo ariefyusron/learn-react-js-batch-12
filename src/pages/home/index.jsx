@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 const Index = () => {
   const { list, resetList, setList } = useTodoList()
-  const [selectList, setSelectList] = useState([])
   const [filter, setFilter] = useState('all')
 
   const listFilter = list.filter(res => filter === 'all' ? true : res.status === filter)
@@ -20,6 +19,8 @@ const Index = () => {
       <option value="done">done</option>
     </>
   )
+
+  console.log(list)
 
   return (
     <div className='wrap'>
@@ -35,11 +36,10 @@ const Index = () => {
               navigate('/post')
             }}
           >go post</button>
-          {selectList.length > 0 && (
+          {list.filter(item => item.selected).length > 0 && (
             <button
               onClick={() => {
-                setList(list.filter((item, index) => !selectList.includes(index)))
-                setSelectList([])
+                setList(list.filter((item) => !item.selected))
               }}
             >delete</button>
           )}
@@ -75,13 +75,14 @@ const Index = () => {
                   <input
                     type='checkbox'
                     id={index}
-                    checked={selectList.includes(index)}
+                    checked={item.selected}
                     onChange={(res) => {
-                      if(res.target.checked) {
-                        setSelectList([...selectList, index])
-                      } else {
-                        setSelectList(selectList.filter(res => res !== index))
+                      const result = [...list]
+                      result[index] = {
+                        ...result[index],
+                        selected: res.target.checked
                       }
+                      setList(result)
                     }}
                   />
                   <div>
@@ -110,7 +111,6 @@ const Index = () => {
                   <button
                     onClick={() => {
                       setList(list.filter((res, idx) => idx !== index))
-                      setSelectList([])
                     }}
                   >
                     delete
